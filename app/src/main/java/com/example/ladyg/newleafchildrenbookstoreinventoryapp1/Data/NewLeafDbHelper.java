@@ -29,11 +29,11 @@ public class NewLeafDbHelper extends SQLiteOpenHelper {
         // Create a String that contains the SQL statement to create the book table
         String SQL_CREATE_BOOKS_TABLE = "CREATE TABLE " + TABLE_NAME + "("
                 + NewLeafEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + NewLeafEntry.COLUMN_PRODUCT_NAME + "TEXT, "
-                + NewLeafEntry.COLUMN_PRICE + " INTEGER NOT NULL, "
-                + NewLeafEntry.COLUMN_QUANTITY + " INTEGER NOT NULL DEFAULT 1, "
-                + NewLeafEntry.COLUMN_SUPPLIER_NAME + "TEXT, "
-                + NewLeafEntry.COLUMN_PHONE_NUMBER + " TEXT);";
+                + NewLeafEntry.COLUMN_PRODUCT_NAME + " TEXT NOT NULL, "
+                + NewLeafEntry.COLUMN_PRICE + " INTEGER NOT NULL DEFAULT 0, "
+                + NewLeafEntry.COLUMN_QUANTITY + " INTEGER NOT NULL DEFAULT 0, "
+                + NewLeafEntry.COLUMN_SUPPLIER_NAME + " TEXT NOT NULL, "
+                + NewLeafEntry.COLUMN_PHONE_NUMBER + " TEXT NOT NULL);";
 
 
         // Execute the SQL statement

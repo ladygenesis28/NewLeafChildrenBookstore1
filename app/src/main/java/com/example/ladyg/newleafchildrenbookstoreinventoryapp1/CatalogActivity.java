@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ladyg.newleafchildrenbookstoreinventoryapp1.Data.NewLeafContract;
 import com.example.ladyg.newleafchildrenbookstoreinventoryapp1.Data.NewLeafDbHelper;
@@ -99,7 +100,7 @@ public class CatalogActivity extends AppCompatActivity {
             int priceColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_PRICE);
             int quantityColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY);
             int suppliernameColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME);
-            int supplierphonenumberColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_PHONE_NUMBER);
+            int phonenumberColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_PHONE_NUMBER);
 
             // Iterate through all the returned rows in the cursor
             while (cursor.moveToNext()) {
@@ -147,6 +148,15 @@ public class CatalogActivity extends AppCompatActivity {
         // into the books database table.
         // Receive the new content URI that will allow us to access Bookstore1 data in the future.
         long newRowId = db.insert(NewLeafContract.NewLeafEntry.TABLE_NAME, null, values);
+
+        // Show a toast message depending on whether or not the insertion was successful
+        if (newRowId == -1) {
+            // If the row ID is -1, then there was an error with insertion.
+            Toast.makeText(this, "Error with saving a book", Toast.LENGTH_SHORT).show();
+        } else {
+            // Otherwise, the insertion was successful and we can display a toast with the row ID.
+            Toast.makeText(this, "Book saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**

@@ -14,7 +14,7 @@ import com.example.ladyg.newleafchildrenbookstoreinventoryapp1.Data.NewLeafContr
 import com.example.ladyg.newleafchildrenbookstoreinventoryapp1.Data.NewLeafDbHelper;
 
 public class EditorActivity extends AppCompatActivity {
-
+    
     //EditText field to enter the book name
     private EditText mNameEditText;
 
@@ -53,6 +53,8 @@ public class EditorActivity extends AppCompatActivity {
         String quantityString = mQuantityEditText.getText().toString().trim();
         String suppliernameString = mSupplierNameEditText.getText().toString().trim();
         String supplierphonenumberString = mSupplierPhoneNumberEditText.getText().toString().trim();
+        int priceInteger = Integer.parseInt(priceString);
+        int quantityInteger = Integer.parseInt(quantityString);
 
         // Create database helper
         NewLeafDbHelper newLeafDbHelper = new NewLeafDbHelper(this);
@@ -64,8 +66,8 @@ public class EditorActivity extends AppCompatActivity {
         // and book attributes are the values.
         ContentValues values = new ContentValues();
         values.put(NewLeafContract.NewLeafEntry.COLUMN_PRODUCT_NAME, nameString);
-        values.put(NewLeafContract.NewLeafEntry.COLUMN_PRICE, priceString);
-        values.put(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY,quantityString );
+        values.put(NewLeafContract.NewLeafEntry.COLUMN_PRICE, priceInteger);
+        values.put(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY,quantityInteger );
         values.put(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME, suppliernameString);
         values.put(NewLeafContract.NewLeafEntry.COLUMN_PHONE_NUMBER, supplierphonenumberString);
 
@@ -74,6 +76,7 @@ public class EditorActivity extends AppCompatActivity {
         // into the books database table.
         // Receive the new content URI that will allow us to access Bookstore1 data in the future.
         long newRowId = db.insert(NewLeafContract.NewLeafEntry.TABLE_NAME, null, values);
+
         // Show a toast message depending on whether or not the insertion was successful
         if (newRowId == -1) {
             // If the row ID is -1, then there was an error with insertion.
