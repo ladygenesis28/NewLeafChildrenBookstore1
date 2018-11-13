@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,7 +27,7 @@ public class CatalogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_catalog);
 
         // Setup FAB to open EditorActivity
-        FloatingActionButton fab = TextView (findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +62,7 @@ public class CatalogActivity extends AppCompatActivity {
                 NewLeafContract.NewLeafEntry.COLUMN_PRICE,
                 NewLeafContract.NewLeafEntry.COLUMN_QUANTITY,
                 NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME,
-                NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER };
+                NewLeafContract.NewLeafEntry.COLUMN_PHONE_NUMBER };
 
 
         // Perform a query on the books table
@@ -90,7 +91,7 @@ public class CatalogActivity extends AppCompatActivity {
                     NewLeafContract.NewLeafEntry.COLUMN_PRICE + " - " +
                     NewLeafContract.NewLeafEntry.COLUMN_QUANTITY + " - " +
                     NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME + " - " +
-                    NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER + "\n");
+                    NewLeafContract.NewLeafEntry.COLUMN_PHONE_NUMBER + "\n");
 
             // Figure out the index of each column
             int idColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry._ID);
@@ -98,7 +99,7 @@ public class CatalogActivity extends AppCompatActivity {
             int priceColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_PRICE);
             int quantityColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY);
             int suppliernameColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME);
-            int supplierphonenumberColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
+            int supplierphonenumberColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_PHONE_NUMBER);
 
             // Iterate through all the returned rows in the cursor
             while (cursor.moveToNext()) {
@@ -139,7 +140,7 @@ public class CatalogActivity extends AppCompatActivity {
         values.put(NewLeafContract.NewLeafEntry.COLUMN_PRICE, "$14.99");
         values.put(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY,"5" );
         values.put(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME, "Erica");
-        values.put(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER, "800-000-0000");
+        values.put(NewLeafContract.NewLeafEntry.COLUMN_PHONE_NUMBER, "800-000-0000");
 
         // Insert a new row for bookstore1 into the provider using the ContentResolver.
         // Use the {@link BookEntry#CONTENT_URI} to indicate that we want to insert
@@ -175,10 +176,5 @@ public class CatalogActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private class FloatingActionButton {
-        public void setOnClickListener(View.OnClickListener onClickListener) {
-        }
     }
 }

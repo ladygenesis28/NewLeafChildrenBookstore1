@@ -67,7 +67,7 @@ public class EditorActivity extends AppCompatActivity {
         values.put(NewLeafContract.NewLeafEntry.COLUMN_PRICE, priceString);
         values.put(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY,quantityString );
         values.put(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME, suppliernameString);
-        values.put(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER, supplierphonenumberString);
+        values.put(NewLeafContract.NewLeafEntry.COLUMN_PHONE_NUMBER, supplierphonenumberString);
 
         // Insert a new row for bookstore1 into the provider using the ContentResolver.
         // Use the {@link BookEntry#CONTENT_URI} to indicate that we want to insert

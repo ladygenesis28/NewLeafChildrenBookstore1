@@ -44,7 +44,7 @@ public class NewLeafContract {
         /**
          * Type: TEXT
          */
-        public final static String COLUMN_SUPPLIER_PHONE_NUMBER = "Supplier Phone Number";
+        public final static String COLUMN_PHONE_NUMBER = "Supplier Phone Number";
 
         /**
          * Type: TEXT
