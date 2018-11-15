@@ -9,11 +9,11 @@
     <string name="editor_activity_title_new_pet">Add a Book</string>
     <string name="editor_activity_title_edit_pet">Edit a Book</string>
     <string name="category_overview">Category</string>
-    <string name="hint_book_name">children book name</string>
-    <string name="hint_book_price">children book price</string>
-    <string name="hint_book_quantity">book quantity</string>
-    <string name="hint_supplier_name">supplier name</string>
-    <string name="hint_supplier_phone_number">supplier phone number</string>
+    <string name="hint_book_name">Enter children book name</string>
+    <string name="hint_book_price">Book price</string>
+    <string name="hint_book_quantity">Book quantity</string>
+    <string name="hint_supplier_name">Enter supplier name</string>
+    <string name="hint_supplier_phone_number">Supplier phone number</string>
     <string name="editor_insert_book_successful">Book deleted</string>
     <string name="editor_insert_book_failed">Error with deleting a book</string>
     <string name="editor_update_book_failed">The update has failed</string>
@@ -27,4 +27,8 @@
     <string name="editor_delete_book_failed">Error with deleting a book</string>
     <string name="editor_delete_book_successful">Book deleted</string>
     <string name="unknown_phone_number">Unknown Supplier Phone Number</string>
+    <string name="error_with_saving_book">Error with saving a book</string>
+    <string name="book_saved_with_row_id">Book saved with row id:</string>
+    <string name="CatA_Error_Save_Book">Error with saving a book</string>
+    <string name="CatA_Book_Saved_Row_id">Book saved with row id:</string>
 </resources>

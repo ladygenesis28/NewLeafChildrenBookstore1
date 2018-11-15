@@ -11,7 +11,7 @@ public class NewLeafContract {
     public static final class NewLeafEntry implements BaseColumns {
 
         //Name of database table for the books
-        public final static String TABLE_NAME = "books";
+        public final static String BOOK = "books";
         /**
          * Unique ID number for the book (only for use in the database table).
          *
@@ -24,7 +24,7 @@ public class NewLeafContract {
          *
          * Type: TEXT
          */
-        public final static String COLUMN_PRODUCT_NAME ="product name";
+        public final static String COLUMN_PRODUCT ="product_name";
 
         /**
          * Type: TEXT
@@ -39,15 +39,15 @@ public class NewLeafContract {
         /**
          * Type: INTEGER
          */
-        public final static String COLUMN_SUPPLIER_NAME = "Supplier Name";
+        public final static String COLUMN_SUPPLIER = "supplier_name";
 
         /**
          * Type: TEXT
          */
-        public final static String COLUMN_PHONE_NUMBER = "Supplier Phone Number";
+        public final static String COLUMN_PHONE = "supplier_phone_number";
 
         /**
-         * Type: TEXT
+         * Type: INTEGER
          */
     }
 

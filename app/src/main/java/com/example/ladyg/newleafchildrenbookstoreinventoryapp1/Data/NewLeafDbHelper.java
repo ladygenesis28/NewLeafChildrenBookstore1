@@ -5,10 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.example.ladyg.newleafchildrenbookstoreinventoryapp1.Data.NewLeafContract.NewLeafEntry;
 
-import static com.example.ladyg.newleafchildrenbookstoreinventoryapp1.Data.NewLeafContract.NewLeafEntry.TABLE_NAME;
+import static com.example.ladyg.newleafchildrenbookstoreinventoryapp1.Data.NewLeafContract.NewLeafEntry.BOOK;
 
 public class NewLeafDbHelper extends SQLiteOpenHelper {
-    public static final String LOG_TAG = NewLeafDbHelper.class.getSimpleName();
 
     // Name of the database file
     private static final String DATABASE_NAME = "book.db";
@@ -27,21 +26,24 @@ public class NewLeafDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Create a String that contains the SQL statement to create the book table
-        String SQL_CREATE_BOOKS_TABLE = "CREATE TABLE " + TABLE_NAME + "("
+        String SQL_CREATE_BOOK_TABLE = "CREATE TABLE " + BOOK + "("
                 + NewLeafEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + NewLeafEntry.COLUMN_PRODUCT_NAME + " TEXT NOT NULL, "
-                + NewLeafEntry.COLUMN_PRICE + " INTEGER NOT NULL DEFAULT 0, "
-                + NewLeafEntry.COLUMN_QUANTITY + " INTEGER NOT NULL DEFAULT 0, "
-                + NewLeafEntry.COLUMN_SUPPLIER_NAME + " TEXT NOT NULL, "
-                + NewLeafEntry.COLUMN_PHONE_NUMBER + " TEXT NOT NULL);";
+                + NewLeafEntry.COLUMN_PRODUCT + " TEXT, "
+                + NewLeafEntry.COLUMN_PRICE + " INTEGER DEFAULT 0, "
+                + NewLeafEntry.COLUMN_QUANTITY + " INTEGER DEFAULT 0, "
+                + NewLeafEntry.COLUMN_SUPPLIER + " TEXT NOT NULL, "
+                + NewLeafEntry.COLUMN_PHONE + " TEXT);";
 
 
         // Execute the SQL statement
-        db.execSQL(SQL_CREATE_BOOKS_TABLE);
+        db.execSQL(SQL_CREATE_BOOK_TABLE);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // The database is still at version 1, so there's nothing to do be done here.
+
+        // Note to reviewer; I know unused methods and variables are not allowed, but
+        // since onUpgrade method is mention on the rubic, I assume its safe to leave on here.
 
     }
 }

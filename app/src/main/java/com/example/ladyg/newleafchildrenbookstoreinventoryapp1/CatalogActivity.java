@@ -28,7 +28,7 @@ public class CatalogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_catalog);
 
         // Setup FAB to open EditorActivity
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,16 +59,16 @@ public class CatalogActivity extends AppCompatActivity {
         // you will actually use after this query.
         String[] projection = {
                 NewLeafContract.NewLeafEntry._ID,
-                NewLeafContract.NewLeafEntry.COLUMN_PRODUCT_NAME,
+                NewLeafContract.NewLeafEntry.COLUMN_PRODUCT,
                 NewLeafContract.NewLeafEntry.COLUMN_PRICE,
                 NewLeafContract.NewLeafEntry.COLUMN_QUANTITY,
-                NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME,
-                NewLeafContract.NewLeafEntry.COLUMN_PHONE_NUMBER };
+                NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER,
+                NewLeafContract.NewLeafEntry.COLUMN_PHONE };
 
 
         // Perform a query on the books table
         Cursor cursor = db.query(
-                NewLeafContract.NewLeafEntry.TABLE_NAME,   // The table to query
+                NewLeafContract.NewLeafEntry.BOOK,   // The table to query
                 projection,            // The columns to return
                 null,                  // The columns for the WHERE clause
                 null,                  // The values for the WHERE clause
@@ -76,7 +76,7 @@ public class CatalogActivity extends AppCompatActivity {
                 null,                  // Don't filter by row groups
                 null);                   // The sort order
 
-        TextView displayView = (TextView) findViewById(R.id.text_view_books);
+        TextView displayView = findViewById(R.id.text_view_books);
 
         try {
             // Create a header in the Text View that looks like this:
@@ -88,19 +88,19 @@ public class CatalogActivity extends AppCompatActivity {
             // the information from each column in this order.
             displayView.setText("The books table contains " + cursor.getCount() + " books.\n\n");
             displayView.append(NewLeafContract.NewLeafEntry._ID + " - " +
-                    NewLeafContract.NewLeafEntry.COLUMN_PRODUCT_NAME + " - " +
+                    NewLeafContract.NewLeafEntry.COLUMN_PRODUCT + " - " +
                     NewLeafContract.NewLeafEntry.COLUMN_PRICE + " - " +
                     NewLeafContract.NewLeafEntry.COLUMN_QUANTITY + " - " +
-                    NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME + " - " +
-                    NewLeafContract.NewLeafEntry.COLUMN_PHONE_NUMBER + "\n");
+                    NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER + " - " +
+                    NewLeafContract.NewLeafEntry.COLUMN_PHONE + "\n");
 
             // Figure out the index of each column
             int idColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry._ID);
-            int nameColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_PRODUCT_NAME);
+            int nameColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_PRODUCT);
             int priceColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_PRICE);
             int quantityColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY);
-            int suppliernameColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME);
-            int phonenumberColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_PHONE_NUMBER);
+            int suppliernameColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER);
+            int supplierphonenumberColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_PHONE);
 
             // Iterate through all the returned rows in the cursor
             while (cursor.moveToNext()) {
@@ -111,7 +111,7 @@ public class CatalogActivity extends AppCompatActivity {
                 int currentPrice = cursor.getInt(priceColumnIndex);
                 int currentQuantity = cursor.getInt(quantityColumnIndex);
                 String currentSupplierName = cursor.getString(suppliernameColumnIndex);
-                String currentSupplierPhoneNumber = cursor.getString(suppliernameColumnIndex);
+                int currentSupplierPhoneNumber = cursor.getInt(supplierphonenumberColumnIndex);
                 // Display the values from each column of the current row in the cursor in the TextView
                 displayView.append(("\n" + currentID + " - " +
                         currentName + " - " +
@@ -137,25 +137,25 @@ public class CatalogActivity extends AppCompatActivity {
         // Create a ContentValues object where column names are the keys,
         // and book attributes are the values.
         ContentValues values = new ContentValues();
-        values.put(NewLeafContract.NewLeafEntry.COLUMN_PRODUCT_NAME, "Adventures Into St. Everston");
-        values.put(NewLeafContract.NewLeafEntry.COLUMN_PRICE, "$14.99");
+        values.put(NewLeafContract.NewLeafEntry.COLUMN_PRODUCT, "Adventures Into St. Everston");
+        values.put(NewLeafContract.NewLeafEntry.COLUMN_PRICE, "1499");
         values.put(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY,"5" );
-        values.put(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME, "Erica");
-        values.put(NewLeafContract.NewLeafEntry.COLUMN_PHONE_NUMBER, "800-000-0000");
+        values.put(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER, "Erica");
+        values.put(NewLeafContract.NewLeafEntry.COLUMN_PHONE, "8123421795");
 
         // Insert a new row for bookstore1 into the provider using the ContentResolver.
         // Use the {@link BookEntry#CONTENT_URI} to indicate that we want to insert
         // into the books database table.
         // Receive the new content URI that will allow us to access Bookstore1 data in the future.
-        long newRowId = db.insert(NewLeafContract.NewLeafEntry.TABLE_NAME, null, values);
+        long newRowId = db.insert(NewLeafContract.NewLeafEntry.BOOK, null, values);
 
         // Show a toast message depending on whether or not the insertion was successful
         if (newRowId == -1) {
             // If the row ID is -1, then there was an error with insertion.
-            Toast.makeText(this, "Error with saving a book", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.CatA_Error_Save_Book), Toast.LENGTH_SHORT).show();
         } else {
             // Otherwise, the insertion was successful and we can display a toast with the row ID.
-            Toast.makeText(this, "Book saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.CatA_Book_Saved_Row_id) + newRowId, Toast.LENGTH_SHORT).show();
         }
     }
 
